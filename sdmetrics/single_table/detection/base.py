@@ -87,7 +87,7 @@ class DetectionMetric(SingleTableMetric):
 
                 scores.append(roc_auc)
 
-            return 1 - np.mean(scores)
+            return np.mean(scores)
         except ValueError as err:
             raise IncomputableMetricError(f'DetectionMetric: Unable to be fit with error {err}')
 
