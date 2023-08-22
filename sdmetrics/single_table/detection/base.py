@@ -34,7 +34,7 @@ class DetectionMetric(SingleTableMetric):
     """
 
     name = 'SingleTable Detection'
-    goal = Goal.MAXIMIZE
+    goal = Goal.MINIMIZE
     min_value = 0.0
     max_value = 1.0
 
@@ -85,7 +85,7 @@ class DetectionMetric(SingleTableMetric):
                 y_pred = cls._fit_predict(X[train_index], y[train_index], X[test_index])
                 roc_auc = roc_auc_score(y[test_index], y_pred)
 
-                scores.append(max(0.5, roc_auc) * 2 - 1)
+                scores.append(roc_auc)
 
             return 1 - np.mean(scores)
         except ValueError as err:
